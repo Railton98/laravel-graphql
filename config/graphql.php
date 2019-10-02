@@ -2,10 +2,7 @@
 
 declare(strict_types=1);
 
-use example\Type\ExampleType;
-use example\Query\ExampleQuery;
-use example\Mutation\ExampleMutation;
-use example\Type\ExampleRelationType;
+use App\GraphQL\Queries\UserQuery;
 
 return [
 
@@ -101,14 +98,10 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                // 'example_query' => ExampleQuery::class,
+                'exemplo' => UserQuery::class
             ],
-            'mutation' => [
-                // 'example_mutation'  => ExampleMutation::class,
-            ],
-            'middleware' => [],
-            'method'     => ['get', 'post'],
-        ],
+            'method' => ['get', 'post']
+        ]
     ],
 
     // The types available in the application. You can then access it from the
@@ -121,9 +114,7 @@ return [
     // ]
     //
     'types' => [
-        // 'example'           => ExampleType::class,
-        // 'relation_example'  => ExampleRelationType::class,
-        // \Rebing\GraphQL\Support\UploadType::class,
+
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request
