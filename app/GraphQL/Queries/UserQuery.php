@@ -9,6 +9,9 @@ use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
 use Rebing\GraphQL\Support\SelectFields;
+use App\GraphQL\Types\UserType;
+use GraphQL;
+use App\User;
 
 class UserQuery extends Query
 {
@@ -19,7 +22,7 @@ class UserQuery extends Query
 
     public function type(): Type
     {
-        return Type::listOf(Type::string());
+        return Type::listOf(GraphQL::type('user'));
     }
 
     public function args(): array
@@ -31,15 +34,6 @@ class UserQuery extends Query
 
     public function resolve($root, $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        /** @var SelectFields $fields */
-        $fields = $getSelectFields();
-        $select = $fields->getSelect();
-        $with = $fields->getRelations();
-
-        return [
-            'tecks',
-            'tecks second',
-            'tecks',
-        ];
+        return User::all();
     }
 }

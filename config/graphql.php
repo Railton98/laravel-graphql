@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\GraphQL\Queries\UserQuery;
+use App\GraphQL\Types\UserType;
 
 return [
 
@@ -114,7 +115,7 @@ return [
     // ]
     //
     'types' => [
-
+        'user' => UserType::class,
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request
