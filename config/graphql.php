@@ -3,8 +3,10 @@
 declare(strict_types=1);
 
 use App\GraphQL\Queries\UserQuery;
+use App\GraphQL\Queries\PostQuery;
 use App\GraphQL\Queries\UserPaginateQuery;
 use App\GraphQL\Types\UserType;
+use App\GraphQL\Types\PostType;
 
 return [
 
@@ -101,7 +103,8 @@ return [
         'default' => [
             'query' => [
                 'users' => UserQuery::class,
-                'users_pagineted' => UserPaginateQuery::class,
+                'users_paginated' => UserPaginateQuery::class,
+                'posts' => PostQuery::class,
             ],
             'method' => ['get', 'post']
         ]
@@ -118,6 +121,7 @@ return [
     //
     'types' => [
         'user' => UserType::class,
+        'post' => PostType::class,
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request
