@@ -33,6 +33,7 @@ class PostQuery extends Query
 
     public function resolve($root, $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        return Post::where('active', true)->paginate();
+        // return Post::where('active', true)->paginate();
+        return Post::paginate();
     }
 }

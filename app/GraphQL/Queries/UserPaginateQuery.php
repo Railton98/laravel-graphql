@@ -50,6 +50,10 @@ class UserPaginateQuery extends Query
             $page = $args['page'];
         }
 
-        return User::paginate($paginate, ['*'], 'page', $page);
+        /** @var SelectFields $fields */
+        $fields = $getSelectFields();
+        $with = $fields->getRelations();
+
+        return User::with($with)->paginate($paginate, ['*'], 'page', $page);
     }
 }

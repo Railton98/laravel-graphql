@@ -6,12 +6,15 @@ namespace App\GraphQL\Types;
 
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
+use App\User;
+use GraphQL;
 
 class UserType extends GraphQLType
 {
     protected $attributes = [
         'name' => 'User',
-        'description' => 'A type for Users'
+        'description' => 'A type for Users',
+        'model' => User::class
     ];
 
     public function fields(): array
@@ -28,6 +31,13 @@ class UserType extends GraphQLType
             'email'=> [
                 'type' => Type::string(),
                 'description' => 'email of the user in database'
+            ],
+            'posts'=> [
+                'type' => Type::listOf(GraphQL::type('post')),
+                'description' => 'list of the posts by user in database',
+                'query' => function (array $args, $query, $ctx) {
+                    return $query->where('posts.active', true);
+                }
             ],
         ];
     }
