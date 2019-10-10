@@ -7,6 +7,7 @@ use App\GraphQL\Queries\PostQuery;
 use App\GraphQL\Queries\UserPaginateQuery;
 use App\GraphQL\Types\UserType;
 use App\GraphQL\Types\PostType;
+use App\GraphQL\Mutations\CreatePostMutation;
 
 return [
 
@@ -105,6 +106,9 @@ return [
                 'users' => UserQuery::class,
                 'users_paginated' => UserPaginateQuery::class,
                 'posts' => PostQuery::class,
+            ],
+            'mutation' => [
+                'createPost' => CreatePostMutation::class,
             ],
             'method' => ['get', 'post']
         ]
